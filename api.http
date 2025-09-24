@@ -1,0 +1,160 @@
+@baseUrl = http://localhost:5000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODljNzI2NzE0YWU4OTYwYzQyNWJmMWMiLCJpYXQiOjE3NTY4MTEyNDIsImV4cCI6MTc1ODEwNzI0Mn0.sn09fUslgMSmj0-EhMuWjAPyx2NVSijoKcxHaedCErM
+@emailToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlwSWQiOiI2ODljNzI5OTE0YWU4OTYwYzQyNWJmMWYiLCJpYXQiOjE3NTUyNTQzNDcsImV4cCI6MTc1NTI2MTU0N30.eWY2sWw15z54l8gtdz0Q4rcb9h4oxGfMFPNy2jIR8rw
+
+### Create a package list
+POST {{baseUrl}}/package-lists
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "White T-Shirt"
+}
+
+
+### Get all package lists
+GET {{baseUrl}}/package-lists/
+Authorization: Bearer {{token}}
+
+
+### Get a package list by id
+GET {{baseUrl}}/package-lists/68b6d0092f01fec792ac6516
+Authorization: Bearer {{token}}
+
+### Update a package list
+PATCH {{baseUrl}}/package-lists/68b6d0092f01fec792ac6516
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "completed": true
+}
+
+### Delete a package list
+DELETE {{baseUrl}}/package-lists/6899c8e2d0c8a76f4792264e
+Authorization: Bearer {{token}}
+
+### Create a user
+POST {{baseUrl}}/users/6889f61aaf38cf2a424fb760
+
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe2@gmail.com",
+  "password": "password"
+}
+
+### Register a user
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "abcdefg",
+  "email": "john.doe3@gmail.com",
+  "password": "password12"
+}
+
+### Login a user
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john.doe3@gmail.com",
+  "password": "password12"
+}
+
+### Create a trip
+POST {{baseUrl}}/trips
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Pokhara, Mustang and Manakamana",
+  "startDate": "2025-08-11",
+  "endDate": "2025-08-11",
+  "destinations": ["Pokhara", "Jomsom", "Muktinath", "Manakamana"],
+  "budget": {
+    "total": 50000,
+    "spent": 0
+  }
+}
+
+### Get all trips
+GET {{baseUrl}}/trips
+Authorization: Bearer {{token}}
+
+### Get a trip by id
+GET {{baseUrl}}/trips/689c729914ae8960c425bf1f
+Authorization: Bearer {{token}}
+
+### Add an expense to a trip
+POST {{baseUrl}}/trips/689c729914ae8960c425bf1f/expenses
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "date": "2025-06-11",
+  "amount": 1200,
+  "name": "Taxi Fare"
+}
+
+### Create an itinerary
+POST {{baseUrl}}/itineraries/689c729914ae8960c425bf1f
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "tripId": "689c729914ae8960c425bf1f",
+  "title": "Day 1",
+  "description": "This is a description of the itinerary Day 1",
+  "date": "2025-08-11",
+  "activities": [
+    {
+      "name": "Check in at Hotel",
+      "time": "08:00 AM",
+      "notes": ["Check In", "Breakfast", "Rest"]
+    },
+    {
+      "name": "Visit Lake Side",
+      "time": "10:00 AM - 02:00 PM",
+      "notes": ["Visit Lake Side", "Tal Barahi Temple", "Do Boating", "Click Pictures"]
+    },
+    {
+      "name": "Visit Street 9",
+      "time": "02:00 PM - 03:00 PM",
+      "notes": ["Have Lunch", "Hire a Cab"]
+    }
+  ]
+}
+
+### Invite a collaborator to a trip
+POST {{baseUrl}}/trips/689c729914ae8960c425bf1f/invite
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  
+  "email": ["compacvictus@gmail.com"]
+}
+
+
+### Accept an invitation to a trip
+GET {{baseUrl}}/trips/689c729914ae8960c425bf1f/invite/accept?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlwSWQiOiI2ODljNzI5OTE0YWU4OTYwYzQyNWJmMWYiLCJpYXQiOjE3NTY4MTE0NTcsImV4cCI6MTc1NjgxODY1N30.G5Bh0tlLVx4px0p9suTYVbznOEpDaibehjRCFAdAWfQ
+Authorization: Bearer {{token}}
+
+
+# ### Delete a file from a trip
+# DELETE {{baseUrl}}/trips/689c729914ae8960c425bf1f/files/689c729914ae8960c425bf1f
+# Authorization: Bearer {{token}}
+
+
+
+###Delete a file from a trip
+DELETE {{baseUrl}}/trips/689c729914ae8960c425bf1f/files?file=wander-wise/trips/Pokhara Manang Mustang Tour_689c729914ae8960c425bf1f/07f7f625076e8b348c9e5290b5345979_rrlvk2
+Authorization: Bearer {{token}}
+
+
+
+
+
