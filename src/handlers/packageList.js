@@ -11,10 +11,10 @@ import { useValidator } from "../middlewares/useValidator.js";
 
 const router = Router();
 
-router.post("/", useValidator(createPackageList), create);
-router.get("/", findAll);
-router.get("/:id", findById);
-router.patch("/:id", update);
-router.delete("/:id", remove);
+router.post("/:tripId", useValidator(createPackageList), create);
+router.get("/:tripId", findAll);
+router.get("/:tripId/:id", findById);
+router.patch("/:tripId/:id", update);
+router.delete("/:tripId/:id", remove);
 
 export default router;
